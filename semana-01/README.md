@@ -6,4 +6,4 @@ Criar um verificador de senhas fortes com interação com o usuário considerand
 
 ### Solução:
 
-Segue no arquivo `project.py`.
+Segue no arquivo [project.py](https://github.com/ronidomingues/trilha-python-forcode/blob/main/semana-01/project.py).
