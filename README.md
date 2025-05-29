@@ -1,3 +1,5 @@
 # Trilha de Python da [for_code](https://github.com/forcodeufrj)
 
-Repositório dedicado a arquivar os exercicios e projetos realizados durante a trilha de Python da [for_code](https://github.com/forcodeufrj) ocorrida de 19/05/2025 - 09/06/2025.
+> Repositório dedicado a arquivar os exercicios e projetos realizados durante a trilha de Python da [for_code](https://github.com/forcodeufrj) ocorrida de 19/05/2025 - 09/06/2025.
+
+Esse projeto utiliza a linguagem de programação [Python](https://www.python.org/), em especial utiliza de uma ambiente virtual [venv](https://docs.python.org/3/library/venv.html) para gerenciar as dependências do projeto ao utilizar em alguns lugares arquivos do jupyter notebook. Para que você possa utilizar o ambiente virtual, basta utilizar o comando `python -m venv venv` para criar um ambiente virtual e o comando `source venv/bin/activate` para ativar o ambiente virtual e em seguida instalar as dependências do projeto listada no arquivo `requirements.txt` com o comando `pip install -r requirements.txt`. Após as instalações de todas as dependências, basta utilizar o comando `jupyter notebook` para abrir o jupyter notebook. Caso prefira importar manualmente os arquivos do jupyter para o google colab, também é uma solução.
