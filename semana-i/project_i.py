@@ -1,6 +1,14 @@
 import os
 import getpass
 
+def clear_screen() -> None:
+    """
+    Função para limpar a tela do terminal.
+    Essa função não recebe parâmetros e não retorna nenhum valor.
+    Ela utiliza o comando 'cls' no Windows ou 'clear' no Linux/Mac para limpar a tela.
+    """
+    os.system("cls" if os.name == "nt" else "clear")
+
 def passwd_consecutives(passwd: str) -> bool:
   """
   Função para verificar se a senha contém três dígitos consecutivos.
@@ -23,56 +31,60 @@ def secure_passwd() -> None:
   Ela exibe as regras para uma boa senha e solicita que o usuário insira uma senha que atenda a esses critérios.
   Se a senha não atender aos critérios, a função solicitará que o usuário insira uma nova senha até que uma senha válida seja fornecida.
   """
-  print("Regras para uma boa senha:".center(50, "-"))
-  print("Sua senha deve atender às seguintes regras:")
-  print("--------------------------------------------------")
-  print("1. Deve ter entre 8 e 16 caracteres.")
-  print("2. Não pode conter espaços no início ou no final.")
-  print("3. Deve conter pelo menos um número.")
-  print("4. Deve conter pelo menos duas letras (uma maiúscula e uma minúscula).")
-  print("5. Deve conter pelo menos um caractere especial.")
-  print("6. Não pode conter três dígitos consecutivos (como '123' ou '987').")
-  print("--------------------------------------------------")
-  get_passwd = getpass.getpass("Por favor, digite uma senha forte: ")
-  if get_passwd != get_passwd.strip():
-    os.system("cls" if os.name == "nt" else "clear")
-    print("\033[31mSua senha não pode conter espaços no início ou no final. Por favor, digite novamente.\n\n\033[0m")
-    secure_passwd()
-  elif len(get_passwd) < 8 or len(get_passwd) > 16:
-    os.system("cls" if os.name == "nt" else "clear")
-    print(f"\033[31mSua senha possui {len(get_passwd)} cractreses, mas ela precisa ter entre 8 e 16 caracteres. Por favor, digite novamente.\033[0m")
-    secure_passwd()
-  else:
-    if not any(char.isdigit() for char in get_passwd):
-      os.system("cls" if os.name == "nt" else "clear")
-      print("\033[31mSua senha precisa conter pelo menos um número. Por favor, digite novamente.\033[0m")
+  try:
+    print("Regras para uma boa senha:".center(50, "-"))
+    print("Sua senha deve atender às seguintes regras:")
+    print("--------------------------------------------------")
+    print("1. Deve ter entre 8 e 16 caracteres.")
+    print("2. Não pode conter espaços no início ou no final.")
+    print("3. Deve conter pelo menos um número.")
+    print("4. Deve conter pelo menos duas letras (uma maiúscula e uma minúscula).")
+    print("5. Deve conter pelo menos um caractere especial.")
+    print("6. Não pode conter três dígitos consecutivos (como '123' ou '987').")
+    print("--------------------------------------------------")
+    get_passwd = getpass.getpass("Por favor, digite uma senha forte: ")
+    if get_passwd != get_passwd.strip():
+      clear_screen()
+      print("\033[31mSua senha não pode conter espaços no início ou no final. Por favor, digite novamente.\n\n\033[0m")
       secure_passwd()
-    elif not any(char.isalpha() for char in get_passwd):
-      os.system("cls" if os.name == "nt" else "clear")
-      print("\033[31mSua senha precisa conter pelo menos duas letras, uma maiúscula e uma minúscula. Por favor, digite novamente.\033[0m")
-      secure_passwd()
-    elif not any(char in "!@#$%^&*()-_+=<>?{}[]|:;'" for char in get_passwd):
-      os.system("cls" if os.name == "nt" else "clear")
-      print("\033[31mSua senha precisa conter pelo menos um caractere especial. Por favor, digite novamente.\033[0m")
-      secure_passwd()
-    elif not any(char.islower() for char in get_passwd):
-      os.system("cls" if os.name == "nt" else "clear")
-      print("\033[31mSua senha precisa conter pelo menos uma letra minúscula. Por favor, digite novamente.\033[0m")
-      secure_passwd()
-    elif not any(char.isupper() for char in get_passwd):
-      os.system("cls" if os.name == "nt" else "clear")
-      print("\033[31mSua senha precisa conter pelo menos uma letra maiúscula. Por favor, digite novamente.\033[0m")
-      secure_passwd()
-    elif passwd_consecutives(get_passwd):
-      os.system("cls" if os.name == "nt" else "clear")
-      print("\033[31mSua senha não pode conter três dígitos consecutivos (como '123' ou '987'). Por favor, digite novamente.\033[0m")
+    elif len(get_passwd) < 8 or len(get_passwd) > 16:
+      clear_screen()
+      print(f"\033[31mSua senha possui {len(get_passwd)} cractreses, mas ela precisa ter entre 8 e 16 caracteres. Por favor, digite novamente.\033[0m")
       secure_passwd()
     else:
-      print("\n\n--------------------------------------------------")
-      print("Parabéns! Sua senha atende a todos os critérios.")
-      print(f"A senha digitada foi: {get_passwd}")
-      print("--------------------------------------------------")
+      if not any(char.isdigit() for char in get_passwd):
+        clear_screen()
+        print("\033[31mSua senha precisa conter pelo menos um número. Por favor, digite novamente.\033[0m")
+        secure_passwd()
+      elif not any(char.isalpha() for char in get_passwd):
+        clear_screen()
+        print("\033[31mSua senha precisa conter pelo menos duas letras, uma maiúscula e uma minúscula. Por favor, digite novamente.\033[0m")
+        secure_passwd()
+      elif not any(char in "!@#$%^&*()-_+=<>?{}[]|:;'\\/" for char in get_passwd):
+        clear_screen()
+        print("\033[31mSua senha precisa conter pelo menos um caractere especial. Por favor, digite novamente.\033[0m")
+        secure_passwd()
+      elif not any(char.islower() for char in get_passwd):
+        clear_screen()
+        print("\033[31mSua senha precisa conter pelo menos uma letra minúscula. Por favor, digite novamente.\033[0m")
+        secure_passwd()
+      elif not any(char.isupper() for char in get_passwd):
+        clear_screen()
+        print("\033[31mSua senha precisa conter pelo menos uma letra maiúscula. Por favor, digite novamente.\033[0m")
+        secure_passwd()
+      elif passwd_consecutives(get_passwd):
+        clear_screen()
+        print("\033[31mSua senha não pode conter três dígitos consecutivos (como '123' ou '987'). Por favor, digite novamente.\033[0m")
+        secure_passwd()
+      else:
+        print("\n\n--------------------------------------------------")
+        print("Parabéns! Sua senha atende a todos os critérios.")
+        print(f"A senha digitada foi: {get_passwd}")
+        print("--------------------------------------------------")
+  except KeyboardInterrupt:
+    print("\n\n\033[31mOperação cancelada pelo usuário.\033[0m")
+    return
 
 if __name__ == "__main__":
-  os.system("cls" if os.name == "nt" else "clear")
+  clear_screen()
   secure_passwd()
