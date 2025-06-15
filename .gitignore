@@ -1,2 +1,7 @@
-.venv
-.ipynb_checkpoints
+# Diretorios ignorados durante o Push para o GitHub:
+*.venv/
+*__pycache__/
+# Arquivos ignorados durante o Push para o GitHub:
+*.ipynb_checkpoints
+*.db
+
